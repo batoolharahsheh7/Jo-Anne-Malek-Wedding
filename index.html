@@ -2079,17 +2079,6 @@ top: -7px;
 
 
     <script>
-document.getElementById("newRsvpForm").addEventListener("submit", function () {
-    const formData = new FormData(this);
-
-    fetch(this.action, {
-        method: "POST",
-        headers: {
-            "Accept": "application/json"
-        },
-        body: formData
-    });
-});
     /* =========================
        RSVP INTERACTION
     ========================= */
@@ -2147,18 +2136,31 @@ document.getElementById("newRsvpForm").addEventListener("submit", function () {
 
     newRsvpForm.addEventListener(
         "submit",
-        function (event) {
+       async function (event) {
+             event.preventDefault();
 
-            event.preventDefault();
-const formData = new FormData(newRsvpForm);
+try {
+    const response = await fetch(newRsvpForm.action, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json"
+        },
+        body: new FormData(newRsvpForm)
+    });
 
-fetch(newRsvpForm.action, {
-  method: "POST",
-  headers: {
-    "Accept": "application/json"
-  },
-  body: formData
-});
+    const result = await response.json();
+
+    if (!response.ok || !result.ok) {
+        alert("Something went wrong. Please try again.");
+        return;
+    }
+
+} catch (error) {
+    alert("Unable to send RSVP. Please try again.");
+    return;
+}
+
+
 
             const selected =
                 document.querySelector(
