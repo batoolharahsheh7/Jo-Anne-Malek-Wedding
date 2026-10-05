@@ -2079,7 +2079,17 @@ top: -7px;
 
 
     <script>
+document.getElementById("newRsvpForm").addEventListener("submit", function () {
+    const formData = new FormData(this);
 
+    fetch(this.action, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json"
+        },
+        body: formData
+    });
+});
     /* =========================
        RSVP INTERACTION
     ========================= */
