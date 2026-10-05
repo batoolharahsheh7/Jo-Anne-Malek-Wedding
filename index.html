@@ -1262,8 +1262,7 @@ top: -7px;
 
         <!-- FORM -->
 
-        <form id="newRsvpForm">
-
+        <form id="newRsvpForm" action="https://send.webforms.to/wft_yit69rx5rhjm6s2cvsb9" method="POST">
             <!-- NAME -->
 
             <div class="rsvp-field">
@@ -1275,6 +1274,7 @@ top: -7px;
                 <input
                     type="text"
                     id="newGuestName"
+                    name="name"
                     placeholder="Enter your name"
                     required
                 >
@@ -1349,6 +1349,7 @@ top: -7px;
                 <input
                     type="text"
                     id="attendingWith"
+                  name="attendingWith"
                     placeholder="Write the names of the people who will be attending"
                 >
 
@@ -1365,7 +1366,7 @@ top: -7px;
             </button>
 
 
-        </form>
+    </form>
 
 
         <!-- =====================
@@ -2139,7 +2140,15 @@ top: -7px;
         function (event) {
 
             event.preventDefault();
+const formData = new FormData(newRsvpForm);
 
+fetch(newRsvpForm.action, {
+  method: "POST",
+  headers: {
+    "Accept": "application/json"
+  },
+  body: formData
+});
 
             const selected =
                 document.querySelector(
