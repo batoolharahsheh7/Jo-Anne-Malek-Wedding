@@ -1262,7 +1262,7 @@ top: -7px;
 
         <!-- FORM -->
 
-        <form id="newRsvpForm" action="https://send.webforms.to/wft_yit69rx5rhjm6s2cvsb9" method="POST">
+        <form id="newRsvpForm"
             <!-- NAME -->
 
             <div class="rsvp-field">
@@ -2136,31 +2136,7 @@ top: -7px;
 
     newRsvpForm.addEventListener(
         "submit",
-       async function (event) {
-             event.preventDefault();
-
-try {
-    const response = await fetch(newRsvpForm.action, {
-        method: "POST",
-        headers: {
-            "Accept": "application/json"
-        },
-        body: new FormData(newRsvpForm)
-    });
-
-    const result = await response.json();
-
-    if (!response.ok || !result.ok) {
-        alert("Something went wrong. Please try again.");
-        return;
-    }
-
-} catch (error) {
-    alert("Unable to send RSVP. Please try again.");
-    return;
-}
-
-
+       function () {
 
             const selected =
                 document.querySelector(
