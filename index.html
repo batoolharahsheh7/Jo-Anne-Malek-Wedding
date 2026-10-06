@@ -2137,7 +2137,14 @@ top: -7px;
 
     newRsvpForm.addEventListener(
         "submit",
-       function () {
+       function (event) {
+    event.preventDefault();
+
+    fetch(newRsvpForm.action, {
+        method: "POST",
+        body: new FormData(newRsvpForm),
+        mode: "no-cors"
+    });
 
             const selected =
                 document.querySelector(
